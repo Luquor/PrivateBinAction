@@ -15,4 +15,4 @@ jobs:
     steps:
     - uses: actions/checkout@v3
     - name: Build the Docker image
-      run: docker run --rm --read-only -v $GITHUB_ACTIONS:/srv:ro privatebin/unit-testing
+      run: docker run --rm --read-only -v $GITHUB_WORKSPACE:/srv:ro privatebin/unit-testing
