@@ -1,4 +1,4 @@
-name: Docker Image CI
+name: CI/CD^2
 
 on:
   push:
@@ -13,7 +13,7 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - name: Build the Docker image
-        run: docker run --rm --read-only -v $GITHUB_WORKSPACE:/srv:ro privatebin/unit-testing
+        run: docker run --rm --read-only -v $GITHUB_WORKSPACE:/srv:ro privatebin/unit-testing -v /var/log/cobertura.xml:/var/log/cobertura.xml
 
       - uses: irongut/CodeCoverageSummary@v1.3.0
         name: Code Coverage Summary Report
