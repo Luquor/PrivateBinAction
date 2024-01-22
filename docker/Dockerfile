@@ -34,4 +34,4 @@ WORKDIR /usr/local/bin
 
 USER nobody
 
-ENTRYPOINT ["unit-test.sh"]
+ENTRYPOINT ["./unit-test.sh"]
