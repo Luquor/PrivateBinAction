@@ -3,12 +3,37 @@ name: CI
 on: [push]
 
 jobs:
-  build-test:
+
+  Composer:
     runs-on: ubuntu-latest
-
     steps:
-    - uses: actions/checkout@v4
+    - name: Checkout
+      uses: actions/checkout@v4
+    - name: Validate composer.json and composer.lock
+      run: composer validate
+    - name: Install dependencies
+      run: composer install --prefer-dist --no-dev
+  
+  PHPunit:
+    steps:
 
+    # let's get started!
+    - name: Checkout
+      uses: actions/checkout@v4
+    
+    - name: Setup PHP
+      uses: shivammathur/setup-php@v2
+      with:
+        php-version: '7.4'
+    
+    - name: Remove composer lock
+      run: rm composer.lock
+    
+    # composer installation
+    - name: Setup PHPunit
+      run: composer install -n
+    
+    # testing
     - name: Run unit tests
-      run: ../vendor/bin/phpunit
+      run: ../vendor/bin/phpunit --no-coverage
       working-directory: tst
