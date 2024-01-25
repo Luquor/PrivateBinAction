@@ -7,14 +7,8 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v3
-    - uses: php-actions/composer@v6 # or alternative dependency management
-    - uses: php-actions/phpunit@v3
+    - uses: actions/checkout@v4
 
-    - name: PHPUnit tests
-      uses: php-actions/phpunit@v3
-      with:
-        configuration: "$GITHUB_WORKSPACE/tst/phpunit.xml"
-        memory_limit: "256M"
-        php_extensions: "xdebug"
-        coverage_clover: "coverage/cobertura.xml"
+    - name: Run unit tests
+      run: ../vendor/bin/phpunit
+      working-directory: tst
