@@ -2,12 +2,11 @@ name: PHPunit
 
 on:
   push:
-    branches: [ "main" ]
+    branches: [ "main " ]
 
 jobs:
 
-  build:
-
+  PHPunit:
     runs-on: ubuntu-latest
     strategy:
       matrix:
@@ -53,4 +52,15 @@ jobs:
       uses: marocchino/sticky-pull-request-comment@v2
       with:
         recreate: true
-        path: code-coverage-results.md 
+        path: code-coverage-results.md
+  
+  PHPstan:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: php-actions/composer@v6
+
+      - name: PHPStan Static Analysis
+        uses: php-actions/phpstan@v3
+        with:
+          path: lib/
