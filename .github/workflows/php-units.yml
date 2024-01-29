@@ -62,7 +62,7 @@ jobs:
     #      with:
     #        path: lib/
     #
-    # Login to Docker Hub (without A2F)
+    # Login to Docker Hub (without A2F (should be working))
     - name: Log in to Docker Hub
       uses: docker/login-action@v3.0.0
       with:
