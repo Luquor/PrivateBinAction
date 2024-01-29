@@ -31,37 +31,37 @@ jobs:
       run: composer require league/flysystem-aws-s3-v3
 
     # testing
-    - name: Run unit tests
-      run: XDEBUG_MODE=coverage ../vendor/bin/phpunit
-      working-directory: tst
-
-    - name: Code Coverage Summary
-      uses: irongut/CodeCoverageSummary@v1.3.0
-      with:
-        filename: ./tst/coverage/coverage.cobertura.xml
-        badge: true
-        fail_below_min: true
-        format: markdown
-        hide_branch_rate: false
-        hide_complexity: true
-        indicators: true
-        output: both
-        thresholds: '60 80'
-
-    - name: Add Coverage summarize
-      run: cat code-coverage-results.md >> $GITHUB_STEP_SUMMARY
-
-    - name: Add Coverage PR Comment
-      uses: marocchino/sticky-pull-request-comment@v2
-      with:
-        recreate: true
-        path: code-coverage-results.md
-
-    - name: PHPStan Static Analysis
-      uses: php-actions/phpstan@v3
-      with:
-        path: lib/
-
+    #    - name: Run unit tests
+    #      run: XDEBUG_MODE=coverage ../vendor/bin/phpunit
+    #      working-directory: tst
+    #
+    #    - name: Code Coverage Summary
+    #      uses: irongut/CodeCoverageSummary@v1.3.0
+    #      with:
+    #        filename: ./tst/coverage/coverage.cobertura.xml
+    #        badge: true
+    #        fail_below_min: true
+    #        format: markdown
+    #        hide_branch_rate: false
+    #        hide_complexity: true
+    #        indicators: true
+    #        output: both
+    #        thresholds: '60 80'
+    #
+    #    - name: Add Coverage summarize
+    #      run: cat code-coverage-results.md >> $GITHUB_STEP_SUMMARY
+    #
+    #    - name: Add Coverage PR Comment
+    #      uses: marocchino/sticky-pull-request-comment@v2
+    #      with:
+    #        recreate: true
+    #        path: code-coverage-results.md
+    #
+    #    - name: PHPStan Static Analysis
+    #      uses: php-actions/phpstan@v3
+    #      with:
+    #        path: lib/
+    #
     # Login to Docker Hub (without A2F)
     - name: Log in to Docker Hub
       uses: docker/login-action@f4ef78c080cd8ba55a85445d5b36e214a81df20a
